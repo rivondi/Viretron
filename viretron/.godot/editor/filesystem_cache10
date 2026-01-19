@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1768860720
+::res://::1768862147
 icon.svg::CompressedTexture2D::5811820038655545881::1768794090::1768794237::1::::<><><>0<>0<>9436c5bc8008f46c837eca4ae61be28f<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://Assets/::1768856657
 ::res://Assets/Characters/::1768856657
@@ -19,8 +19,9 @@ blank.txt::TextFile::-1::1768840734::0::1::::<><><>0<>0<><>::
 ::res://Scenes/Characters/::1768856657
 ::res://Scenes/Characters/Enemies/::1768856657
 blank.txt::TextFile::-1::1768840734::0::1::::<><><>0<>0<><>::
-::res://Scenes/Characters/Player/::1768856657
+::res://Scenes/Characters/Player/::1768860802
 blank.txt::TextFile::-1::1768840734::0::1::::<><><>0<>0<><>::
+player.tscn::PackedScene::1365570441259805206::1768860802::0::1::::<><><>0<>0<><>::
 ::res://Scenes/Levels/::1768856657
 afghan_hound.tscn::PackedScene::479077181590681786::1768848123::0::1::::<><><>0<>0<><>::
 blank.txt::TextFile::-1::1768840734::0::1::::<><><>0<>0<><>::
