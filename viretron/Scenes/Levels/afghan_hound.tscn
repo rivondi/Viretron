@@ -1,3 +1,5 @@
 [gd_scene format=3 uid="uid://g3cli371iifq"]
 
 [node name="AfghanHound" type="Node"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
