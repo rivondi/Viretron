@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dimd5nr3fg77b"]
+
+[ext_resource type="PackedScene" uid="uid://ddrd4dxypuwuu" path="res://Viletron git/Viretron/scenes/player.tscn" id="1_4sifm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1gmfd"]
+size = Vector2(697, 43)
+
+[node name="TestWorld" type="Node2D"]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(327, 360)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(1, 5)
+shape = SubResource("RectangleShape2D_1gmfd")
+
+[node name="ColorRect" type="ColorRect" parent="Floor"]
+offset_left = -349.0
+offset_top = -16.0
+offset_right = 364.0
+offset_bottom = 24.0
+
+[node name="Player" parent="." instance=ExtResource("1_4sifm")]
+position = Vector2(156, 332)
