@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://g3cli371iifq"]
+
+[node name="AfghanHound" type="Node"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 108.0
+offset_top = 173.0
+offset_right = 514.0
+offset_bottom = 196.0
+text = "Added to check the start button erase when needed "
