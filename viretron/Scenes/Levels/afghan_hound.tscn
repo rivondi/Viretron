@@ -1,14 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://g3cli371iifq"]
+[gd_scene load_steps=4 format=4 uid="uid://g3cli371iifq"]
 
 [ext_resource type="PackedScene" uid="uid://dlnjqvgtgl4s2" path="res://Scenes/Levels/pause_menu.tscn" id="1_cytee"]
+[ext_resource type="PackedScene" uid="uid://dog6kwrr6r1ah" path="res://Resources/TileMaps/dark_industrial.tscn" id="1_knmem"]
 [ext_resource type="PackedScene" uid="uid://ddrd4dxypuwuu" path="res://Scenes/Characters/Player/player.tscn" id="2_afsfx"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_afsfx"]
-size = Vector2(654.5, 49)
 
 [node name="AfghanHound" type="Node"]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="TileMapLayer" parent="." instance=ExtResource("1_knmem")]
+tile_map_data = PackedByteArray("AAACABUAAAACAAAAAAADABUAAAACAAAAAAAEABUAAAACAAAAAAAEABYAAAADAAEAAAAFABYAAAAEAAEAAAAGABYAAAAEAAEAAAAHABYAAAAEAAEAAAAIABYAAAAEAAEAAAAIABUAAAACAAAAAAAJABUAAAACAAAAAAAKABUAAAACAAAAAAALABUAAAACAAAAAAAMABUAAAACAAAAAAANABUAAAACAAAAAAAOABUAAAACAAAAAAAPABUAAAAFAAAAAAAHABUAAAACAAAAAAAGABUAAAACAAAAAAAFABUAAAACAAAAAAABABUAAAACAAAAAAAAABUAAAACAAAAAAD//xUAAAACAAAAAAD+/xUAAAACAAAAAAD9/xUAAAACAAAAAAD8/xUAAAAAAAAAAAAPABYAAAAFAAEAAAAOABYAAAAEAAEAAAANABYAAAAEAAEAAAAMABYAAAAEAAEAAAALABYAAAAEAAEAAAAKABYAAAAEAAEAAAAJABYAAAAEAAEAAAADABYAAAAEAAEAAAACABYAAAAEAAEAAAD+/xYAAAAEAAEAAAD//xYAAAAEAAEAAAAAABYAAAABAAEAAAABABYAAAACAAEAAAD9/xYAAAAEAAEAAAD8/xYAAAAAAAEAAAA=")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 108.0
@@ -20,17 +19,5 @@ text = "Added to check the start button erase when needed "
 [node name="PauseMenu" parent="." instance=ExtResource("1_cytee")]
 visible = false
 script = null
-
-[node name="Floor" type="StaticBody2D" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="Floor"]
-offset_left = -9.0
-offset_top = 346.0
-offset_right = 645.0
-offset_bottom = 396.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(317.75, 371)
-shape = SubResource("RectangleShape2D_afsfx")
 
 [node name="Player" parent="." instance=ExtResource("2_afsfx")]
