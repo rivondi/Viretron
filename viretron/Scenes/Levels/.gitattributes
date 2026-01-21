@@ -1,0 +1,8 @@
+# Automatically normalize line endings for all text-based files
+* text=auto
+
+# Ensure Godot specific files always use LF (Unix style)
+*.tscn text eol=lf
+*.tres text eol=lf
+*.gd text eol=lf
+*.godot text eol=lf
