@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://h6vahn52so4k"]
 
-[ext_resource type="Script" uid="uid://qcnn38c8vrst" path="res://Levels/main_menu.gd" id="1_eb2tw"]
+[ext_resource type="Script" uid="uid://qcnn38c8vrst" path="res://Viletron git/Viretron/Levels/main_menu.gd" id="1_eb2tw"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
