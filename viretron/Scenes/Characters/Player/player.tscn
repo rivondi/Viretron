@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ddrd4dxypuwuu"]
 
-[ext_resource type="Script" uid="uid://cy3vwm47o33x2" path="res://Viletron git/Viretron/Player/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://b5kk34ifwkw60" path="res://Scripts/Characters/Player/player.gd" id="1_3vyb7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u8vuu"]
 

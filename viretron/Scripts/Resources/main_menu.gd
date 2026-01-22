@@ -16,7 +16,7 @@ func _ready():
 # bookmark (3) Start Game Logic
 func _on_start_pressed():
 	# Change to the actual game level
-	get_tree().change_scene_to_file("res://Viletron git/Viretron/Levels/afghan_hound.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Levels/afghan_hound.tscn")
 
 # bookmark (4) Show Credits
 func _on_credits_pressed():
