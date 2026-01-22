@@ -1,55 +1,90 @@
 extends CharacterBody2D
 
-# bookmark (1) Player Movement Variables
+# bookmark (Movement Settings)
 @export var walk_speed = 150.0
 @export var run_speed = 250.0
-@export var jump_velocity = -350.0
+@export var jump_velocity = -300.0
 @export var gravity = 900.0
+var is_running = false
 
-# bookmark (2) State Machine Setup
-enum State { IDLE, RUN, JUMP, FALL }
-var current_state = State.IDLE
+# bookmark (Health Settings)
+@export var max_health = 100
+var current_health = 100
 
-# bookmark (3) Visual References
-@onready var visual_root = $ColorRect
+# bookmark (Node References)
+@onready var visuals = $ColorRect
+@onready var health_bar = $HUD/HealthBar
+
+func _ready():
+	# bookmark (Initialize Health)
+	current_health = max_health
+	if health_bar:
+		health_bar.max_value = max_health
+		health_bar.value = current_health
+	else:
+		print("ERROR: Could not find $HUD/HealthBar")
 
 func _physics_process(delta):
-	# bookmark (4) Global Gravity
+	# bookmark (Apply Gravity)
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	# bookmark (5) Input Processing
-	var direction = Input.get_axis("move_left", "move_right")
-	var want_jump = Input.is_action_just_pressed("jump")
-	var want_run = Input.is_action_pressed("run")
-	
-	# bookmark (6) State Transition Logic
-	if is_on_floor():
-		if want_jump:
-			current_state = State.JUMP
-			velocity.y = jump_velocity
-		elif direction != 0:
-			current_state = State.RUN
-		else:
-			current_state = State.IDLE
-	else:
-		if velocity.y > 0:
-			current_state = State.FALL
+	# bookmark (Handle Jump)
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = jump_velocity
 
-	# bookmark (7) State Behavior & Movement
-	var current_speed = run_speed if want_run else walk_speed
+	# bookmark (Handle Movement Input)
 	
+	var direction = Input.get_axis("move_left", "move_right")
+
+	# bookmark (Check Run State)
+	if Input.is_action_pressed("run"):
+		is_running = true
+	else:
+		is_running = false
+
+	# bookmark (Determine Speed)
+	var current_speed = run_speed if is_running else walk_speed
+
+	# bookmark (Move and Face Direction)
 	if direction:
 		velocity.x = direction * current_speed
-		flip_character(direction)
+		
+		# Flip the ColorRect (Body + Nose)
+		if visuals:
+			if direction > 0:
+				visuals.scale.x = 1
+			elif direction < 0:
+				visuals.scale.x = -1
 	else:
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 
 	move_and_slide()
 
-# bookmark (8) Flip Logic
-func flip_character(direction_input):
-	if direction_input < 0:
-		transform.x.x = -1 
-	elif direction_input > 0:
-		transform.x.x = 1
+func _input(event):
+	# bookmark (Test Damage Key)
+	# Press "T" to test the health bar
+	if event is InputEventKey and event.pressed and event.keycode == KEY_T:
+		if not event.echo:
+			take_damage(10)
+
+func take_damage(amount):
+	# bookmark (Damage Logic)
+	current_health -= amount
+	
+	if current_health < 0:
+		current_health = 0
+	
+	# Update the UI Bar
+	if health_bar:
+		health_bar.value = current_health
+		
+	print("Ouch! Health is now: ", current_health)
+	
+	if current_health == 0:
+		die()
+
+func die():
+	# bookmark (Death Logic)
+	print("Player has died!")
+	get_tree().reload_current_scene()
