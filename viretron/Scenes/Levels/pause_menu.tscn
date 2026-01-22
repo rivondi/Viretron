@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://dlnjqvgtgl4s2"]
 
-[ext_resource type="Script" uid="uid://bwcod5i06bq0n" path="res://pause_menu.gd" id="1_4a8jl"]
+[ext_resource type="Script" uid="uid://dywny1kis21j0" path="res://Scripts/pause_menu.gd" id="1_yafon"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
-script = ExtResource("1_4a8jl")
+script = ExtResource("1_yafon")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
