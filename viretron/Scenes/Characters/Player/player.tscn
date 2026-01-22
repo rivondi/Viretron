@@ -23,3 +23,7 @@ offset_top = -1.0
 offset_right = 9.0
 offset_bottom = 2.0
 color = Color(1, 0.0431373, 1, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
