@@ -1,5 +1,4 @@
-res://Resources/TileMaps
-res://Assets/TileMaps
-res://Scripts/Levels
+res://Scripts
+res://Scripts/Characters/Player
 res://Scenes/Levels
 res://Scenes/Characters/Player
