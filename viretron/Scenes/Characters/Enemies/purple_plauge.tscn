@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://du0ibfnqducg7"]
+[gd_scene load_steps=32 format=3 uid="uid://du0ibfnqducg7"]
 
 [ext_resource type="Texture2D" uid="uid://6anwyus52jpv" path="res://Assets/Characters/Enemy/Plag_Bring_Knight_Attack_PURPLE.png" id="1_08f2d"]
 [ext_resource type="Texture2D" uid="uid://c31qjodimp158" path="res://Assets/Characters/Enemy/Plag_Bring_Knight_Idle_Purple.png" id="2_1bed1"]
@@ -204,9 +204,18 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08f2d"]
+size = Vector2(20, 58)
+
 [node name="PurplePlauge" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ndh4s")
 animation = &"walk"
 frame_progress = 0.24074301
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+show_behind_parent = true
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_08f2d")
