@@ -1,8 +1,127 @@
-[gd_scene load_steps=32 format=3 uid="uid://du0ibfnqducg7"]
+[gd_scene load_steps=33 format=3 uid="uid://du0ibfnqducg7"]
 
 [ext_resource type="Texture2D" uid="uid://6anwyus52jpv" path="res://Assets/Characters/Enemy/Plag_Bring_Knight_Attack_PURPLE.png" id="1_08f2d"]
 [ext_resource type="Texture2D" uid="uid://c31qjodimp158" path="res://Assets/Characters/Enemy/Plag_Bring_Knight_Idle_Purple.png" id="2_1bed1"]
 [ext_resource type="Texture2D" uid="uid://m245voev4uap" path="res://Assets/Characters/Enemy/Plag_Bring_Knight_Walk._PURPLE.png" id="3_ixhqm"]
+
+[sub_resource type="GDScript" id="GDScript_08f2d"]
+script/source = "extends CharacterBody2D
+
+# --- SETTINGS ---
+@export var move_speed = 60.0
+@export var gravity = 900.0
+@export var damage_amount = 10   # How much health to take
+@export var attack_rate = 1.0    # How often he hits (seconds)
+
+# --- STATE MACHINE ---
+enum {IDLE, PATROL, ATTACK}
+var current_state = PATROL
+var facing_direction = 1 
+var attack_cooldown = 0.0
+
+# --- NODE REFERENCES ---
+@onready var animated_sprite = $AnimatedSprite2D
+@onready var ledge_check = $LedgeCheck
+@onready var attack_check = $AttackCheck
+@onready var state_timer = $StateTimer
+
+func _ready():
+	randomize_timer()
+
+func _physics_process(delta):
+	# 1. Apply Gravity
+	if not is_on_floor():
+		velocity.y += gravity * delta
+	
+	# 2. Update Attack Timer
+	if attack_cooldown > 0:
+		attack_cooldown -= delta
+	
+	# 3. Run State Logic
+	match current_state:
+		PATROL:
+			logic_patrol()
+		IDLE:
+			logic_idle()
+		ATTACK:
+			logic_attack()
+	
+	move_and_slide()
+
+# --- STATE LOGIC ---
+
+func logic_patrol():
+	animated_sprite.play(\"walk\")
+	velocity.x = move_speed * facing_direction
+	
+	if is_on_wall() or not is_safe_ledge():
+		flip_direction()
+		
+	if is_player_in_range():
+		change_state(ATTACK)
+	
+	if state_timer.is_stopped():
+		change_state(IDLE)
+
+func logic_idle():
+	animated_sprite.play(\"idle\")
+	velocity.x = 0
+	
+	if is_player_in_range():
+		change_state(ATTACK)
+		
+	if state_timer.is_stopped():
+		change_state(PATROL)
+
+func logic_attack():
+	animated_sprite.play(\"attack\")
+	velocity.x = 0 
+	
+	# --- THE DAMAGE LOGIC ---
+	# 1. Check if cooldown is finished AND player is close
+	if attack_cooldown <= 0 and is_player_in_range():
+		var collider = attack_check.get_collider()
+		
+		# 2. Check if the thing we hit can take damage
+		if collider.has_method(\"take_damage\"):
+			collider.take_damage(damage_amount) # Call the function on the Player
+			print(\"Enemy Hit Player!\")
+			attack_cooldown = attack_rate # Reset cooldown
+	# ------------------------
+	
+	# If player runs away, stop attacking
+	if not is_player_in_range():
+		change_state(PATROL)
+
+# --- HELPER FUNCTIONS ---
+
+func change_state(new_state):
+	current_state = new_state
+	randomize_timer()
+
+func randomize_timer():
+	state_timer.wait_time = randf_range(2.0, 4.0)
+	state_timer.start()
+
+func is_safe_ledge():
+	return ledge_check.is_colliding()
+
+func is_player_in_range():
+	if attack_check.is_colliding():
+		var collider = attack_check.get_collider()
+		if collider and collider.name == \"Player\":
+			return true
+	return false
+
+func flip_direction():
+	facing_direction = -facing_direction
+	if facing_direction > 0:
+		animated_sprite.flip_h = false 
+	else:
+		animated_sprite.flip_h = true 
+	ledge_check.position.x = -ledge_check.position.x
+	attack_check.target_position.x = -attack_check.target_position.x
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w7f0c"]
 atlas = ExtResource("1_08f2d")
@@ -208,14 +327,26 @@ animations = [{
 size = Vector2(20, 58)
 
 [node name="PurplePlauge" type="CharacterBody2D"]
+script = SubResource("GDScript_08f2d")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ndh4s")
-animation = &"walk"
-frame_progress = 0.24074301
+animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 show_behind_parent = true
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_08f2d")
+
+[node name="LedgeCheck" type="RayCast2D" parent="."]
+position = Vector2(15, 0)
+target_position = Vector2(0, 40)
+
+[node name="AttackCheck" type="RayCast2D" parent="."]
+position = Vector2(-10, 5)
+target_position = Vector2(60, 0)
+
+[node name="StateTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
