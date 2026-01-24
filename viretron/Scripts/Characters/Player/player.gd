@@ -12,7 +12,7 @@ var is_running = false
 var current_health = 100
 
 # bookmark (Node References)
-# We are back to using ColorRect as you requested
+
 @onready var visuals = $ColorRect
 @onready var health_bar = $HUD/HealthBar
 
@@ -24,7 +24,7 @@ func _ready():
 		health_bar.value = current_health
 	
 	# --- NEW FIX: AUTO-CENTER THE COLOR RECT ---
-	# This ensures that when we flip it, it doesn't "jump" away from the collision box.
+	
 	if visuals:
 		visuals.pivot_offset = visuals.size / 2
 		visuals.position = -visuals.size / 2
@@ -56,7 +56,7 @@ func _physics_process(delta):
 		velocity.x = direction * current_speed
 		
 		# Flip the ColorRect (Visuals)
-		# We use Scale here because ColorRects don't have "flip_h"
+
 		if visuals:
 			if direction > 0:
 				visuals.scale.x = 1
