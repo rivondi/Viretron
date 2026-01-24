@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=4 uid="uid://cdqir2s5jrmnx"]
+[gd_scene load_steps=4 format=4 uid="uid://bbcl03t6jfhkp"]
 
 [ext_resource type="PackedScene" uid="uid://dog6kwrr6r1ah" path="res://Resources/TileMaps/dark_industrial.tscn" id="1_yhtqf"]
 [ext_resource type="PackedScene" uid="uid://ddrd4dxypuwuu" path="res://Scenes/Characters/Player/player.tscn" id="2_3w6qm"]

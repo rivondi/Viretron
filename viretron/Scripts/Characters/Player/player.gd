@@ -3,7 +3,7 @@ extends CharacterBody2D
 # bookmark (Movement Settings)
 @export var walk_speed = 150.0
 @export var run_speed = 250.0
-@export var jump_velocity = -300.0
+@export var jump_velocity = -500.0
 @export var gravity = 900.0
 var is_running = false
 
@@ -12,6 +12,7 @@ var is_running = false
 var current_health = 100
 
 # bookmark (Node References)
+
 @onready var visuals = $ColorRect
 @onready var health_bar = $HUD/HealthBar
 
@@ -21,8 +22,13 @@ func _ready():
 	if health_bar:
 		health_bar.max_value = max_health
 		health_bar.value = current_health
-	else:
-		print("ERROR: Could not find $HUD/HealthBar")
+	
+	# --- NEW FIX: AUTO-CENTER THE COLOR RECT ---
+	
+	if visuals:
+		visuals.pivot_offset = visuals.size / 2
+		visuals.position = -visuals.size / 2
+	# -------------------------------------------
 
 func _physics_process(delta):
 	# bookmark (Apply Gravity)
@@ -34,7 +40,6 @@ func _physics_process(delta):
 		velocity.y = jump_velocity
 
 	# bookmark (Handle Movement Input)
-	
 	var direction = Input.get_axis("move_left", "move_right")
 
 	# bookmark (Check Run State)
@@ -50,7 +55,8 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction * current_speed
 		
-		# Flip the ColorRect (Body + Nose)
+		# Flip the ColorRect (Visuals)
+
 		if visuals:
 			if direction > 0:
 				visuals.scale.x = 1
@@ -63,7 +69,6 @@ func _physics_process(delta):
 
 func _input(event):
 	# bookmark (Test Damage Key)
-	# Press "T" to test the health bar
 	if event is InputEventKey and event.pressed and event.keycode == KEY_T:
 		if not event.echo:
 			take_damage(10)
@@ -75,7 +80,6 @@ func take_damage(amount):
 	if current_health < 0:
 		current_health = 0
 	
-	# Update the UI Bar
 	if health_bar:
 		health_bar.value = current_health
 		
