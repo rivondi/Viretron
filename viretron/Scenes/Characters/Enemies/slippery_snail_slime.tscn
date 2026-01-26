@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cp2aqdms7fggo"]
+
+[ext_resource type="Texture2D" uid="uid://nk1xlryod50q" path="res://Assets/Characters/Enemy/ServerSnail/slippery_slime.png" id="1_0liop"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tkhb8"]
+size = Vector2(131, 15)
+
+[node name="SlipperySnailSlime" type="CharacterBody2D" unique_id=68478809]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=944354859]
+texture = ExtResource("1_0liop")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=196973679]
+show_behind_parent = true
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_tkhb8")

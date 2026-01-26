@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://domo7p0qjs1x8"]
+
+[ext_resource type="Texture2D" uid="uid://s1amy48ieqe2" path="res://Assets/Effects/toixc_sludge.png" id="1_1naah"]
+[ext_resource type="Texture2D" uid="uid://calnlkputwd2o" path="res://Assets/Effects/Green Effect and Bullet 16x16.png" id="1_2upy5"]
+
+[sub_resource type="Animation" id="Animation_mbhfs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Layers/Sludge:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Layers/Bubbles:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [132]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer/Layers/Bubbles:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer/Layers/Bubbles/Bubbles:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [132]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationPlayer/Layers/Bubbles/Bubbles:offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_acysp"]
+resource_name = "active"
+length = 2.0
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Layers/Sludge:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4000001, 1.6, 1.8000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 0, 1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Layers/Bubbles:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [132, 133, 134, 135, 136, 137]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer/Layers/Bubbles:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, -10), Vector2(0, -15), Vector2(0, -15)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer/Layers/Bubbles/Bubbles:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.79999995, 1, 1.1999999, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [137, 132, 133, 134, 135, 136, 137]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationPlayer/Layers/Bubbles/Bubbles:offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, -10), Vector2(0, -15), Vector2(0, -15)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wkb37"]
+_data = {
+&"RESET": SubResource("Animation_mbhfs"),
+&"active": SubResource("Animation_acysp")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1naah"]
+size = Vector2(132, 27)
+
+[node name="ToxicSnailSludge" type="CharacterBody2D" unique_id=1554980832]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=594453304]
+libraries/ = SubResource("AnimationLibrary_wkb37")
+
+[node name="Layers" type="Node2D" parent="AnimationPlayer" unique_id=1387137157]
+
+[node name="Sludge" type="Sprite2D" parent="AnimationPlayer/Layers" unique_id=637285776]
+texture = ExtResource("1_1naah")
+hframes = 5
+
+[node name="Bubbles" type="Sprite2D" parent="AnimationPlayer/Layers" unique_id=84507296]
+position = Vector2(-43, -2)
+texture = ExtResource("1_2upy5")
+hframes = 36
+vframes = 13
+frame = 132
+
+[node name="Bubbles" type="Sprite2D" parent="AnimationPlayer/Layers/Bubbles" unique_id=1516774830]
+position = Vector2(55, -8)
+texture = ExtResource("1_2upy5")
+hframes = 36
+vframes = 13
+frame = 132
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1731560960]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_1naah")
