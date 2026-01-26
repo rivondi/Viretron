@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cs2wewbbp537"]
+
+[ext_resource type="Script" uid="uid://bhok1iryc5d1h" path="res://Scripts/General/level_door.gd" id="1_m4jqp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkk30"]
+size = Vector2(79, 174)
+
+[node name="LevelDoor" type="Area2D" unique_id=406785630]
+script = ExtResource("1_m4jqp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1724044253]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_kkk30")

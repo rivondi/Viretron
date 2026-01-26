@@ -1,6 +1,6 @@
-res://Scripts/Characters/Enemy
-res://Scenes/Levels
-C:/Users/River Vondi/Desktop/Viretron/viretron/Scripts/Levels
-res://Scripts
-res://Scripts/Characters/Player
-res://Scenes/Characters/Player
+res://Scripts/General/
+res://Scenes/Levels/
+res://Scripts/Characters/Enemy/
+res://Scripts/
+res://Scripts/Characters/Player/
+res://Scenes/Characters/Player/
