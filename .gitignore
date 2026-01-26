@@ -97,3 +97,4 @@ viretron/.godot/
 /viretron/.godot
 viretron/.godot/editor/create_recent.Node
 viretron/.godot/editor/recent_dirs
+*.import
