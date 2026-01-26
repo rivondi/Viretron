@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://dxmrvubxc4lgh"]
+
+[ext_resource type="Texture2D" uid="uid://bfqvicafekckw" path="res://Assets/Characters/Enemy/ServerSnail/normal_snail.png" id="1_2jb82"]
+[ext_resource type="Texture2D" uid="uid://cwmu0n67awwhh" path="res://Assets/Characters/Enemy/ServerSnail/toxic_snail.png" id="2_jvn24"]
+
+[sub_resource type="Animation" id="Animation_2jb82"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Layers/ToxicSnail:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Layers/NormalSnail:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_jvn24"]
+resource_name = "normal_walk"
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Layers/NormalSnail:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_23861"]
+resource_name = "toxic_walk"
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Layers/ToxicSnail:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x6gd0"]
+_data = {
+&"RESET": SubResource("Animation_2jb82"),
+&"normal_walk": SubResource("Animation_jvn24"),
+&"toxic_walk": SubResource("Animation_23861")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bg6tm"]
+size = Vector2(228, 204)
+
+[node name="ServerSnail" type="CharacterBody2D" unique_id=903702340]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=688435146]
+libraries/ = SubResource("AnimationLibrary_x6gd0")
+
+[node name="Layers" type="Node2D" parent="." unique_id=391670777]
+
+[node name="ToxicSnail" type="Sprite2D" parent="Layers" unique_id=1849781762]
+texture = ExtResource("2_jvn24")
+hframes = 5
+
+[node name="NormalSnail" type="Sprite2D" parent="Layers" unique_id=215628177]
+visible = false
+texture = ExtResource("1_2jb82")
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2089321006]
+show_behind_parent = true
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_bg6tm")
