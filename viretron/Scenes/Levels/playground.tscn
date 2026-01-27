@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dog6kwrr6r1ah" path="res://Resources/TileMaps/dark_industrial.tscn" id="1_yhtqf"]
 [ext_resource type="PackedScene" uid="uid://ddrd4dxypuwuu" path="res://Scenes/Characters/Player/player.tscn" id="2_3w6qm"]
 [ext_resource type="PackedScene" uid="uid://du0ibfnqducg7" path="res://Scenes/Characters/Enemies/purple_plauge.tscn" id="3_3w6qm"]
-[ext_resource type="PackedScene" uid="uid://cs2wewbbp537" path="res://Scenes/Levels/level_door.tscn" id="4_owxrl"]
+[ext_resource type="PackedScene" uid="uid://ddstgqgir2doi" path="res://Scenes/Levels/level_exit.tscn" id="4_owxrl"]
 
 [node name="Playground" type="Node" unique_id=2068554431]
 
@@ -35,5 +35,6 @@ position = Vector2(319, -30)
 
 [node name="Traps" type="Node" parent="." unique_id=203900400]
 
-[node name="LevelDoor" parent="." unique_id=406785630 instance=ExtResource("4_owxrl")]
-position = Vector2(622, -83)
+[node name="LevelExit" parent="." unique_id=1863293970 instance=ExtResource("4_owxrl")]
+position = Vector2(633, -84)
+next_level_path = "uid://bbcl03t6jfhkp"

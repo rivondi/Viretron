@@ -1,9 +1,12 @@
+Timer
+Button
+Label
+Panel
+CanvasLayer
 CollisionShape2D
 Area2D
-Timer
 RayCast2D
 ProgressBar
-CanvasLayer
 Camera2D
 Node
 Node2D
