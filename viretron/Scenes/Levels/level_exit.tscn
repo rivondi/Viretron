@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://ddstgqgir2doi"]
+
+[ext_resource type="Script" uid="uid://cl03rg6kr2o8" path="res://Scripts/General/level_exit.gd" id="1_74ib8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dfhm"]
+size = Vector2(86, 160)
+
+[node name="LevelExit" type="Area2D" unique_id=1863293970]
+script = ExtResource("1_74ib8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=682126946]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_2dfhm")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1158929356]
+
+[node name="ExitPanel" type="Panel" parent="CanvasLayer" unique_id=2038210158]
+visible = false
+anchors_preset = -1
+anchor_top = 0.003
+anchor_bottom = 0.003
+offset_left = 371.0
+offset_top = 182.056
+offset_right = 736.0
+offset_bottom = 460.056
+
+[node name="Label" type="Label" parent="CanvasLayer/ExitPanel" unique_id=1091471722]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 9.0
+offset_right = 248.0
+offset_bottom = 32.0
+text = "Go to Next Level?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="YesButton" type="Button" parent="CanvasLayer/ExitPanel" unique_id=139572220]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 101.0
+offset_right = 146.0
+offset_bottom = 132.0
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="CanvasLayer/ExitPanel" unique_id=617683746]
+layout_mode = 0
+offset_left = 203.0
+offset_top = 101.0
+offset_right = 256.0
+offset_bottom = 132.0
+text = "No"
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=20342510]
+wait_time = 5.0
+one_shot = true

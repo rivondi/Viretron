@@ -12,8 +12,7 @@ var is_running = false
 var current_health = 100
 
 # bookmark (Node References)
-
-@onready var visuals = $ColorRect
+@onready var animated_sprite = $AnimatedSprite2D
 @onready var health_bar = $HUD/HealthBar
 
 func _ready():
@@ -22,13 +21,6 @@ func _ready():
 	if health_bar:
 		health_bar.max_value = max_health
 		health_bar.value = current_health
-	
-	# --- NEW FIX: AUTO-CENTER THE COLOR RECT ---
-	
-	if visuals:
-		visuals.pivot_offset = visuals.size / 2
-		visuals.position = -visuals.size / 2
-	# -------------------------------------------
 
 func _physics_process(delta):
 	# bookmark (Apply Gravity)
@@ -55,15 +47,22 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction * current_speed
 		
-		# Flip the ColorRect (Visuals)
-
-		if visuals:
-			if direction > 0:
-				visuals.scale.x = 1
-			elif direction < 0:
-				visuals.scale.x = -1
+		# Flip the Sprite
+		if direction > 0:
+			animated_sprite.flip_h = false
+		elif direction < 0:
+			animated_sprite.flip_h = true
+			
+		# Play Walk Animation
+		if is_on_floor():
+			animated_sprite.play("walk")
+			
 	else:
 		velocity.x = move_toward(velocity.x, 0, current_speed)
+		
+		# Play Idle Animation
+		if is_on_floor():
+			animated_sprite.play("idle")
 
 	move_and_slide()
 
@@ -91,4 +90,5 @@ func take_damage(amount):
 func die():
 	# bookmark (Death Logic)
 	print("Player has died!")
-	get_tree().reload_current_scene()
+	get_tree().reload_current_scene() 
+ 
