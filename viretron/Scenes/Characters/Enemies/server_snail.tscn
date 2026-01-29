@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dxmrvubxc4lgh"]
 
-[ext_resource type="Texture2D" uid="uid://bfqvicafekckw" path="res://Assets/Characters/Enemy/ServerSnail/normal_snail.png" id="1_2jb82"]
-[ext_resource type="Texture2D" uid="uid://cwmu0n67awwhh" path="res://Assets/Characters/Enemy/ServerSnail/toxic_snail.png" id="2_jvn24"]
+[ext_resource type="Texture2D" uid="uid://dg6b85dnyc3pd" path="res://Assets/Characters/Enemy/ServerSnail/normal_snail.png" id="1_2jb82"]
+[ext_resource type="Texture2D" uid="uid://b7axgktxokh8v" path="res://Assets/Characters/Enemy/ServerSnail/toxic_snail.png" id="2_jvn24"]
+[ext_resource type="Texture2D" uid="uid://ciktlkp8eoqsp" path="res://Assets/Characters/Enemy/ServerSnail/server-snail-death.png" id="3_jvn24"]
 
 [sub_resource type="Animation" id="Animation_2jb82"]
 length = 0.001
@@ -28,6 +29,35 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Layers/Death:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_x6gd0"]
+resource_name = "death"
+length = 1.4
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Layers/Death:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
 }
 
 [sub_resource type="Animation" id="Animation_jvn24"]
@@ -67,6 +97,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x6gd0"]
 _data = {
 &"RESET": SubResource("Animation_2jb82"),
+&"death": SubResource("Animation_x6gd0"),
 &"normal_walk": SubResource("Animation_jvn24"),
 &"toxic_walk": SubResource("Animation_23861")
 }
@@ -86,11 +117,16 @@ texture = ExtResource("2_jvn24")
 hframes = 5
 
 [node name="NormalSnail" type="Sprite2D" parent="Layers" unique_id=215628177]
-visible = false
 texture = ExtResource("1_2jb82")
 hframes = 5
+
+[node name="Death" type="Sprite2D" parent="Layers" unique_id=289659003]
+position = Vector2(-5, 22)
+texture = ExtResource("3_jvn24")
+hframes = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2089321006]
 show_behind_parent = true
 position = Vector2(10, 10)
 shape = SubResource("RectangleShape2D_bg6tm")
+metadata/_edit_lock_ = true
